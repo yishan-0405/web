@@ -1,0 +1,118 @@
+<html>
+<head>
+    <title>0323-CSS動畫</title>
+    <style>
+        div{
+            margin-bottom: 10px;
+            width: 400px;
+            height: 100px;
+        }
+        @keyframes kd1 {
+            0%{ background: linear-gradient(0deg, red,blue); }
+            8%{ background: linear-gradient(30deg, red,blue); }
+            17%{ background: linear-gradient(60deg, red,blue); }
+            25%{ background: linear-gradient(90deg, red,blue); }
+            33%{ background: linear-gradient(120deg, red,blue); }
+            42%{ background: linear-gradient(150deg, red,blue); }
+            50%{ background: linear-gradient(180deg, red,blue); }
+            58%{ background: linear-gradient(210deg, red,blue); }
+            67%{ background: linear-gradient(240deg, red,blue); }
+            75%{ background: linear-gradient(270deg, red,blue); }
+            83%{ background: linear-gradient(300deg, red,blue); }
+            92%{ background: linear-gradient(330deg, red,blue); }
+            100%{ background: linear-gradient(360deg, red,blue); }
+        }
+
+
+        #d1 {
+            
+            background: linear-gradient(135deg,red,yellow);
+            animation: kd1 0.5s infinite linear;
+        }   
+        @keyframes kd2 {
+            0%{ background: linear-gradient(90deg, red,orange,yellow,green,blue,indigo,violet); }
+            15%{ background: linear-gradient(90deg, orange,yellow,green,blue,indigo,violet,red); }
+            29%{ background: linear-gradient(90deg,yellow,green,blue,indigo,violet,red,orange); }
+            43%{ background: linear-gradient(90deg, green,blue,indigo,violete,red,orange,yellow); }
+            27%{ background: linear-gradient(90deg, blue,indigo,violet,red,orange,yellow,green); }
+            71%{ background: linear-gradient(90deg, indigo,violet,red,orange,yellow,green,blue); }
+            86%{ background: linear-gradient(90deg, violet,red,orange,yellow,green,blue,indigo); }
+            100%{ background: linear-gradient(90deg, red,orange,yellow,green,blue,indigo,violet); }
+        }
+        #d2 {
+            height: 50px;
+            background: linear-gradient(90deg, red,orange,yellow,green,blue,indigo,violet);
+        }
+        #d3 {
+            background: linear-gradient(90deg, red 30%,white 30%,white 70%,blue 70%);
+        
+        }
+        @keyframes kd4 {
+            0%{ background: linear-gradient(45deg, red 30%,white 35%,green 40%,white 45%,red 50%); }
+            15%{ background: linear-gradient(45deg,white 35%,green 40%,white 45%,red 30%,white 50% ); }
+            29%{ background: linear-gradient(45deg,green 40%,white 45%,red 50%,white 35%); }
+            43%{ background: linear-gradient(45deg, red 50%,red 30%,white 35%,green 40%,white 45%,); }
+            27%{ background: linear-gradient(45deg, red 30%,white 35%,green 40%,white 45%,red 50%); }
+            71%{ background: linear-gradient(45deg, red 30%,white 35%,green 40%,white 45%,red 50%); }
+            86%{ background: linear-gradient(45deg, red 30%,white 35%,green 40%,white 45%,red 50%); }
+            100%{ background: linear-gradient(45deg, red 30%,white 35%,green 40%,white 45%,red 50%); }
+         }
+        #d4 {
+            height: 50px;
+            background: repeating-linear-gradient(130deg,green 30%,white 35%,blue 40%,white 45%,green 50%);
+
+        }
+        /* radial-gradient輻射漸層
+            預設會隨著榮ˊ氣的寬高變形(橢圓形)
+            第一個參數加上circle,就會無視容器的寬高，強制以圓形呈現。
+        */
+         @keyframes kr1 {
+            0%{ background: linear-gradient(circle, red 30%,white 35%,green 40%,white 45%,red 50%); }
+            15%{ background: linear-gradient(circle,red 30%,white 35%,green 40%,white 45%,red 50% ); }
+            29%{ background: linear-gradient(circle,red 30%,white 35%,green 40%,white 45%,red 50%); }
+            43%{ background: linear-gradient(circle, red 30%,white 35%,green 40%,white 45%,red 50%); }
+            27%{ background: linear-gradient(circle, red 30%,white 35%,green 40%,white 45%,red 50%); }
+         }
+        #r1 {
+            height: 200px;
+            width: 400px;
+            background: radial-gradient(circle,yellow,white 50%,black 70%);
+        }
+        #r2 {
+            height: 200px;
+            background: repeating-radial-gradient(circle,gray 20%,white 30%,gray 40%)
+
+        }
+        /* 圓錐漸層 
+        預設由順時針繞圓心一周
+        第一個參數可以修改起點位置 from 0~360deg
+        */
+        #c1 {
+            height: 300px;
+            background: conic-gradient(red,yellow,green,cyan,blue,magenta,red)
+
+        }
+        #c2 {
+            height: 200px;
+            background: repeating-conic-gradient(red 10%,white 15%,red 20%)
+        }
+    </style>
+</head>
+<body>
+    <!-- 漸層-->
+    <div id="d1"></div>
+    <div id="d2"></div>
+    <div id="d3"></div>
+    <div id="d4"></div>
+
+    <div id="r1"></div>
+    <div id="r2"></div>
+    
+    <div id="c1"></div>
+    <div id="c2"></div>
+    <!--動畫 -->
+
+
+
+</body>
+</html>
