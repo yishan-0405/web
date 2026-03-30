@@ -1,0 +1,128 @@
+<html>
+    <head>
+        <title>0330-CSS容器大小及位置</title>
+        <style> /* margin邊界 padding填充 border框線 top1 right2 bottom3 left4 */
+                /* transparent 透明 */
+            
+            
+    
+            #d1 {
+                width: 0px;
+                height:0px;
+                border: solid 5px black;
+                border-color: red yellow blue green;/* 上 右 下 左 *//*變透明可以產生形狀*/
+                border-width: 10px 20px 30px 40px;/*兩條線會互相影響*/
+            }
+            #d2{
+                width: 100px;
+                height: 50px;
+                border: solid 1px black;
+                border-radius: 50px ;/*即使超過也沒關係，最多就是圓弧*/
+                margin: 10px;
+                
+            }
+            #d3 {
+                width: 400px;
+                height: 400px;
+                border: solid 1px black;
+                margin-bottom: 10px;
+                position: relative;
+
+            }
+             #d31 {
+                width: 50px;
+                height: 50px;
+                border: solid 1px red;
+                background-color: red;
+                position: absolute;/* 位置改變 */
+                top: 0px;
+                left: 0px;
+                z-index: 30;
+                
+            }
+             #d32 {
+                width: 50px;
+                height: 50px;
+                border: solid 1px blue;
+                background-color: blue;
+                position: absolute;
+                top: 10px;
+                left: 20px;
+                z-index: 20;
+
+            }
+            #d4 {
+                width: 50px;
+                height: 50px;
+                background-color: green;
+                transform: scale(2,0.5) translate(100px) rotate(15deg); /*小括號和前面字不要有空白*//*放大 移動 順時針旋轉*/
+                /*先後順序會看起來不一樣*//*可分成x軸y軸*/
+            }
+
+            
+            /* christmas tree */
+            #t3{
+                width: 0px;
+                height: 0px;
+                border: solid 5px black;
+                border-color: transparent transparent green transparent;/* 上 右 下 左 *//*變透明可以產生形狀*/
+                /* border-width設成0之後color上左右沒必要變透明，如果border本來就設透明。 */
+                border-width: 30px;
+                margin-left: 15px;
+
+            }
+            #t4{
+                width: 30px;
+                height: 0px;
+                border: solid 5px black;
+                border-color: transparent transparent green transparent;/* 上 右 下 左 *//*變透明可以產生形狀*/
+                border-width: 0px 20px 25px;
+                margin-left: 10px;
+
+            }
+            #t5{
+                width: 40px;
+                height: 0px;
+                border: solid 5px black;
+                border-color: transparent transparent green transparent;/* 上 右 下 左 *//*變透明可以產生形狀*/
+                border-width: 0px 20px 25px;
+                margin-left: 5px;
+
+            }
+            #t6{
+                width: 25px;
+                height: 0px;
+                border: solid 5px black;
+                border-color: transparent transparent #704214 transparent;/* 上 右 下 左 *//*變透明可以產生形狀*/
+                border-width: 0px 0px 20px 0px;
+                margin-left: 32.5px;
+
+            }
+        </style>
+
+    </head>
+    <body>
+        <div id="d1"></div>
+        <div id="d2"></div>
+        <div id="d3">
+            <div id="d31"></div><!-- 先後會影響覆蓋上下-->
+            <div id="d32"></div>
+        </div>
+        <div id="d4"></div>
+        
+
+
+
+        <!-- Christmas tree-->
+        <div id="t3"></div>
+        <div id="t4"></div>
+        <div id="t5"></div>
+        <div id="t6"></div>
+
+
+
+
+
+
+    </body>
+</html>
