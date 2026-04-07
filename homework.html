@@ -111,7 +111,7 @@
                 border: solid 4.5px transparent;
                 border-radius: 50px;
                 background-color: #ffffff;
-                border-color: silver;
+                border-color: rgb(197, 195, 195);
                 position: absolute;
                 left: 1px;
             }
@@ -121,7 +121,7 @@
                 border: solid 4.5px transparent;
                 border-radius: 50px;
                 background-color: #ffffff;
-                border-color: silver;
+                border-color: rgb(197, 195, 195);
                 position: absolute;
                 left: 33.5px;
             }
@@ -129,7 +129,7 @@
                 width: 4.8px;
                 height: 12px;
                 border: solid 0px transparent;
-                background-color: silver;
+                background-color: rgb(197, 195, 195);
                 position: absolute;
                 top: 10px;
             } 
@@ -137,10 +137,10 @@
                 width: 4.8px;
                 height: 12px;
                 border: solid 0px transparent;
-                background-color: silver;
+                background-color: rgb(197, 195, 195);
                 position: absolute;
                 top: 10px;
-                left:66px;
+                left:65.5px;
             } 
             #a16 {
                 width: 10px;
@@ -149,7 +149,7 @@
                 border-radius: 5px;
                 background-color: black;
                 position: absolute;
-                top: 13px;
+                top: 12px;
                 left:16px;
             }
             #a17 {
@@ -159,7 +159,7 @@
                 border-radius: 5px;
                 background-color: black;
                 position: absolute;
-                top: 13px;
+                top: 12px;
                 left:44px;
             }
             #a111{ /*兩顆手+衣服*/
@@ -169,7 +169,7 @@
                 position: relative;
                 position: absolute;
                 top: 35px;
-                left:14px;
+                left:5.3px;
             }
             #a121 {
                 width: 9px;
@@ -179,7 +179,7 @@
                 background-color: black;
                 position: absolute;
                 top: 19px;
-                left:0px;
+                left:8.7px;
                 transform: rotate(340deg);
             }
             #a131 {
@@ -190,16 +190,50 @@
                 background-color: black;
                 position: absolute;
                 top: 19px;
-                left:63px;
+                left:71.7px;
                 transform: rotate(20deg);
-             }
+            }
+            #a141 {
+                width: 25px;
+                height: 0px;
+                border: solid 1px transparent;
+                border-width: 3px 0px 0px 4px;
+                border-color: rgb(46, 78, 160) transparent transparent;
+                position: absolute;
+                top: 15px;
+                left:2.8px;
+                transform: rotate(53deg);
+            }
+            #a142 {
+                width: 25px;
+                height: 0px;
+                border: solid 0px transparent;
+                border-width: 3px 4px 0px 0px;
+                border-color: rgb(46, 78, 160) transparent transparent;
+                position: absolute;
+                top: 15px;
+                left:57.8px;
+                transform: rotate(307deg);
+            }
+            #a143 {
+                width: 68px;
+                height: 23px;
+                border: solid 1px rgb(37, 64, 133);
+                border-radius: 0px 0px 25px 25px;
+                background-color: rgb(46, 78, 160);
+                position: absolute;
+                top: 61px;
+                left:15px;
+            }
+
+
              #a21 { /*兩隻手臂*/
                 width: 0px;
                 height: 0px;
                 border: solid 0px transparent;
                 border-width: 8px 20px 0px 5px;
                 border-radius: 6px 10px 0px 0px;
-                border-color: #f4de64fe transparent transparent;
+                border-color:#fee65e transparent transparent;
                 position: absolute;
                 top: 50px;
                 left: 2px;
@@ -211,16 +245,45 @@
                 border: solid 0px transparent;
                 border-width: 8px 5px 0px 20px;
                 border-radius: 10px 6px 0px 0px;
-                border-color: #f4de64fe transparent transparent;
+                border-color: #fee65e transparent transparent;
                 position: absolute;
                 top: 50px;
                 left: 73px;
                 transform: rotate(70deg);
             }
-            #a31 {
+            #a31 {/*嘴巴*/
+                width: 20px;
+                height: 10px;
+                border: solid 0px transparent;
+                border-radius: 10px 9px 0px 0px;
+                background-color: rgb(192, 64, 64);
+                transform: scale(1,0.8) rotate(168deg);
+                position: absolute;
+                position: relative;
+                top: 45.5px;
+                left: 40px;
             }
             #a32 {
-
+                width: 22px;
+                height: 10px;
+                border: solid 0px transparent;
+                border-radius: 10px 10px 0px 0px;
+                background-color: #ffe969;
+                transform: scale(1.2,0.3) rotate(131.5deg);
+                position: absolute;
+                top: 42px;
+                left: 40.4px;
+            }
+            #a33 {
+                width: 10px;
+                height: 4px;
+                border: solid 0px transparent;
+                border-radius: 10px 10px 0px 0px;
+                background-color: white;
+                transform: rotate(4.5deg) scale(2,1);
+                position: absolute;
+                top: 5.2px;
+                left: 5.15px;
             }
 
             #a45 { /*兩隻腳*/
@@ -337,14 +400,22 @@
             <div id="a21"></div><!--兩隻手臂-->
             <div id="a22"></div>
 
-             <div id="a111"><!--兩顆手+衣服-->
-                    <div id="a121"></div>
+            <div id="a143"></div><!--衣服-->
+            <div id="a144"></div>
+
+             <div id="a111"><!--兩顆手+衣服背帶-->
+                    <div id="a141"></div><!--衣服背帶-->
+                    <div id="a142"></div>
+
+                    <div id="a121"></div><!--兩顆手-->
                     <div id="a131"></div>
              </div>
-
-            <div id="a31"></div><!--嘴巴-->
+            
+            <div id="a31"><!--嘴巴-->
+                <div id="a33"></div>
+            </div>
             <div id="a32"></div>
-
+            
             <div id="a45"><!--兩隻腳-->
                 <div id="a4">
                     <div id="a43"></div>
