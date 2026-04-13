@@ -1,0 +1,72 @@
+<html>
+    <head>
+        <title>0413-CSS漸變、字型、陰影</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Playwrite+IE:wght@100..400&display=swap" rel="stylesheet">
+        <style>
+            div{
+                margin-bottom: 5px;
+            }
+            #d1{
+                width: 100px;
+                height: 100px;
+                background: red;
+                transition: transform 1s linear;/*屬性 空格 時間 ,*//*速度 ease linear*/
+                /*放在hover裡會不一樣*/
+            }
+            #d1:hover { /*滑鼠移上去*/
+                width: 400px;
+                height: 400px;
+                transform: rotate(360deg);
+            }
+            #d2{
+                width: 100px;
+                height: 50px;
+                background: darkred;
+                border: 5px solid pink;
+                transition: border 2s ,background 2s;
+            }
+            #d2:hover { 
+                background: red;
+                border: 5px solid darkred;
+            }
+
+            #t1{
+                width: 200px;
+                height: 100px;
+                background: red;
+                box-shadow: darkred 0px 0px 3px 5px;/*x軸位移 y軸位移 暈邊大小 放大*//*可以有多個陰影 以逗點隔開*/
+            }
+            #k1{
+                font-size: 30pt;/*+單位 pt \ em*/
+                color: transparent;
+                text-shadow: black 0px 0px 5px;
+            }
+
+            #g1{
+                font-size: 30pt;
+                font-family: 'Times New Roman',Times, serif,'新細明體','標楷體';/*依先後順序*/
+            }
+            #g2{
+                font-size: 30pt;
+                font-family: '微軟正黑體',Arial, Helvetica, sans-serif;
+            }
+            #g3{
+                font-size: 30pt;
+                font-family: 'Playwrite IE';/*去google找*/
+            }
+        </style>
+    </head>
+    <body>
+        <div id="d1"></div>
+        <div id="d2"></div>
+        <div id="t1"></div>
+        <div id="k1">文字</div>
+        <div id="g1">襯線體 Times New Roman</div>
+        <div id="g2">無襯線體 Arial, Helvetica</div>
+        <div id="g3">Playwrite Ireland</div>
+
+
+    </body>
+</html>
