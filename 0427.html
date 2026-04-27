@@ -1,0 +1,91 @@
+<html>
+    <head>
+        <title>0427-JS元素控制</title>
+        <style>
+            .dv { /*class原始樣子*/
+                display: inline-block;
+                width: 100px;
+                height: 80px;
+                margin: 5px;
+                border: 1px solid black;
+                border-radius: 5px;/*圓弧*/
+            }
+            .selected { 
+                box-shadow: 0px 0px 5px black;
+            }
+            .selected-one { 
+                box-shadow: 0px 0px 5px red;
+            }
+        </style>
+        <script>
+            
+            /*function choose(elm) {
+                elm.style.borderColor="red";/*border變red*/
+            function toggle(elm){ //開關 再按一下取消
+                if(elm.classList.contains("selected")) { //List是大寫L
+                    elm.classList.remove("selected");
+                } else {
+                    elm.classList.add("selected");
+                }
+            }
+            function setColor() {
+                //document.getElementsById("").style.backgroundColor=event.target.value;
+                Array.from(document.getElementsByClassName("selected")).forEach((a)=>{
+                    a.style.backgroundColor=event.target.value;
+                    a.classList.remove("selected");
+                });
+            }
+            /////////////////////////////////////////////////////////
+            my={};//全域變數
+            function choose(elm) {
+                elm.classList.add("selected-one");//也可以是selected
+                my.elm=elm;
+            }
+            function setOneColor() {
+                my.elm.style.backgroundColor = event.target.value;
+            }
+            function setRound() {
+                my.elm.style.borderRadius = event.target.value + "px"; //記得單位
+            }
+            ////////////////////////////////////////////////////////
+            zy={elm:null};//全域變數
+            function choose(elm) {
+                if(zy.elm != null){
+                zy.elm.classList.remove("selected-one");
+                }
+                elm.classList.add("selected-one");
+                zy.elm=elm;
+            }
+            function setOneColor() {
+                zy.elm.style.backgroundColor=event.target.value;
+            }
+
+        </script>
+    </head>
+    <body>
+        <div class="dv" onclick="toggle(this);"></div> <!--onclick 被點擊 this這個-->
+        <div class="dv" onclick="toggle(this);"></div>
+        <div class="dv" onclick="toggle(this);"></div>
+        <div class="dv" onclick="toggle(this);"></div>
+        <div>
+            <input type="color" oninput="setColor();">
+        </div>
+        <hr>
+        <div class="dv" onclick="choose(this);"></div> <!--onclick 被點擊 this這個-->
+        <div class="dv" onclick="choose(this);"></div>
+        <div class="dv" onclick="choose(this);"></div>
+        <div class="dv" onclick="choose(this);"></div>
+        <div>
+            <input type="color" oninput="setOneColor();">
+            <input type="range" max=50 oninput="setRound();">
+        </div>
+        <hr>
+        <div class="dv" onclick="choose(this);"></div> <!--onclick 被點擊 this這個-->
+        <div class="dv" onclick="choose(this);"></div>
+        <div class="dv" onclick="choose(this);"></div>
+        <div class="dv" onclick="choose(this);"></div>
+        <div>
+            <input type="color" oninput="setOneColor();">
+        </div>
+    </body>
+</html>
