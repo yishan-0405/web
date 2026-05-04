@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <title>0504-JS亂數與計時器</title>
+        <style>
+            #lottery {
+                font-size: 100pt;
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+            }
+            #dice {
+                display: block;
+                margin: 20px;
+            }
+        </style>
+        <script>
+            //亂數
+            function getRand(min,max) { /*範圍在min和max之間*/
+                return Math.floor(Math.random()*(max-min+1)) + min;
+            }
+            //計時器
+            function getLotttery() {
+                setTimeout(clearInterval, 3000, setInterval(()=>{ //3000ms後停
+                    document.getElementById("lottery").innerHTML = getRand(1,99);
+                },100));
+                //document.getElementById("lottery").innerHTML = getRand(1,99);
+            }
+            function throwDice() {
+                //event.target.scr="pic/"+n+".png"
+                setTimeout(clearInterval, 3000, setInterval((img)=>{
+                    img.src=`pic/${getRand(1,6)}.png`;
+                },50,event.target));
+            }
+        </script>
+    </head>
+    <body>
+        <button onclick="getLotttery();">抽籤</button>
+        <div id="lottery">99</div>
+        <hr>
+        <img src="pic/diceQ.png" width="100px" onclick="throwDice();">
+    </body>
+</html>
