@@ -48,18 +48,19 @@
         
         }
         @keyframes kd4 {
-            0%{ background: linear-gradient(45deg, red 30%,white 35%,green 40%,white 45%,red 50%); }
-            15%{ background: linear-gradient(45deg,white 35%,green 40%,white 45%,red 30%,white 50% ); }
-            29%{ background: linear-gradient(45deg,green 40%,white 45%,red 50%,white 35%); }
-            43%{ background: linear-gradient(45deg, red 50%,red 30%,white 35%,green 40%,white 45%,); }
-            27%{ background: linear-gradient(45deg, red 30%,white 35%,green 40%,white 45%,red 50%); }
-            71%{ background: linear-gradient(45deg, red 30%,white 35%,green 40%,white 45%,red 50%); }
-            86%{ background: linear-gradient(45deg, red 30%,white 35%,green 40%,white 45%,red 50%); }
-            100%{ background: linear-gradient(45deg, red 30%,white 35%,green 40%,white 45%,red 50%); }
+            0%{ background: repeating-linear-gradient(45deg, red 30%,white 35%,green 40%,white 45%,red 50%); }
+            15%{ background: repeating-linear-gradient(45deg,white 30%,green 35%,white 40%,red 45%,white 50% ); }
+            29%{ background: repeating-linear-gradient(45deg,green 30%,white 35%,red 40%,white 45%,green 50%); }
+            43%{ background: repeating-linear-gradient(45deg, white 30%,red 35%,white 40%,green 45%,white 50%); }
+            59%{ background: repeating-linear-gradient(45deg, red 30%,white 35%,green 40%,white 45%,red 50%); }
+            71%{ background: repeating-linear-gradient(45deg, white 30%,green 35%,white 40%,red 45%,white 50%); }
+            86%{ background: repeating-linear-gradient(45deg, green 30%,white 35%,red 40%,white 45%,green 50%); }
+            100%{ background: repeating-linear-gradient(45deg, white 30%,red 35%,white 40%,green 45%,white 50%); }
          }
         #d4 {
             height: 50px;
-            background: repeating-linear-gradient(130deg,green 30%,white 35%,blue 40%,white 45%,green 50%);
+            background: repeating-linear-gradient(130deg,red 30%,white 35%,green 40%,white 45%,red 50%);
+            animation: kd4 1s infinite linear;
 
         }
         /* radial-gradient輻射漸層
@@ -67,20 +68,35 @@
             第一個參數加上circle,就會無視容器的寬高，強制以圓形呈現。
         */
          @keyframes kr1 {
-            0%{ background: linear-gradient(circle, red 30%,white 35%,green 40%,white 45%,red 50%); }
-            15%{ background: linear-gradient(circle,red 30%,white 35%,green 40%,white 45%,red 50% ); }
-            29%{ background: linear-gradient(circle,red 30%,white 35%,green 40%,white 45%,red 50%); }
-            43%{ background: linear-gradient(circle, red 30%,white 35%,green 40%,white 45%,red 50%); }
-            27%{ background: linear-gradient(circle, red 30%,white 35%,green 40%,white 45%,red 50%); }
+            0%{ background: radial-gradient(circle, yellow,white 50%,black 70%); }
+            12.5%{ background: radial-gradient(circle, yellow,white 40%,black 70%); }
+            25%{ background: radial-gradient(circle, yellow,white 30%,black 70%); }
+            37.5%{ background: radial-gradient(circle, yellow,white 20%,black 70%); }
+            50%{ background: radial-gradient(circle, yellow,white 10%,black 70%); }
+            62.5%{ background: radial-gradient(circle, yellow,white 20%,black 70%); }
+            75%{ background: radial-gradient(circle, yellow,white 30%,black 70%); }
+            87.5%{ background: radial-gradient(circle, yellow,white 40%,black 70%); }
+            100%{ background: radial-gradient(circle, yellow,white 50%,black 70%); }
+
+
          }
         #r1 {
             height: 200px;
             width: 400px;
             background: radial-gradient(circle,yellow,white 50%,black 70%);
+            animation: kr1 1s infinite linear;
+        }
+
+        @keyframes kr2 {
+            0%{ background: repeating-radial-gradient(circle, gray 20%,white 30%,gray 40%); }
+            50%{ background: repeating-radial-gradient(circle, white 20%,gray 30%,white 40%); }
+            100%{ background: repeating-radial-gradient(circle, gray 20%,white 30%,gray 40%); }
+
         }
         #r2 {
             height: 200px;
-            background: repeating-radial-gradient(circle,gray 20%,white 30%,gray 40%)
+            background: repeating-radial-gradient(circle,gray 20%,white 30%,gray 40%);
+            animation: kr2 0.5s infinite linear;
 
         }
         /* 圓錐漸層 
@@ -89,12 +105,21 @@
         */
         #c1 {
             height: 300px;
-            background: conic-gradient(red,yellow,green,cyan,blue,magenta,red)
+            background: conic-gradient(red,yellow,green,cyan,blue,magenta,red);
+
+        }
+
+        @keyframes kc2 {
+            0%{ background: repeating-conic-gradient(red 10%,white 15%,red 20%); }
+            50%{ background: repeating-conic-gradient(white 10%,red 15%,white 20%); }
+            100%{ background: repeating-conic-gradient(red 10%,white 15%,red 20%); }
 
         }
         #c2 {
             height: 200px;
-            background: repeating-conic-gradient(red 10%,white 15%,red 20%)
+            background: repeating-conic-gradient(red 10%,white 15%,red 20%);
+            animation: kc2 0.5s infinite linear;
+
         }
     </style>
 </head>
