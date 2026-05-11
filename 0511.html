@@ -1,0 +1,96 @@
+<html>
+    <head>
+        <title>0511-元素的產生與消失</title>
+        <style>
+            #timebar {
+                width: 602px;
+                height: 10px;
+                background-color: green;
+                margin-bottom: 2px;
+
+            }
+            #board { /*id用#*/
+                width: 600px;
+                height: 600px;
+                border: 1px solid black;
+                position: relative;
+            }
+            .target { /*class用.*/
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                position: absolute;
+
+            }
+
+        </style>
+        <script>
+            var game_started=false;
+            var game_timer=[];
+            var game_second=30;
+            var game_score=0;
+
+            function gameStart() {
+                if(game_started) return;
+                game_started=true;
+                game_score=0;
+                game_timer.push(setInterval(()=>{ /*時間到了停下來*/
+                    if(game_second<=0) gameStop();
+                    game_second-=0.01;
+                    document.getElementById("timebar").style.width=(game_second * 20)+"px";
+                    if(game_second<10){
+                        document.getElementById("timebar").style.backgroundColor="red";
+                    } else {
+                        document.getElementById("timebar").style.backgroundColor="green";
+                    }
+                },10));
+                game_timer.push(setInterval(createTarget,1000));
+            }
+            function gameStop() {
+                game_started=false;
+                gmae_timer.forEach((t)=>{clearInterval(t)});
+                Array.form(document.getElementsByClassName("target")).forEach((a)=>{
+                    a.remove();
+                });
+
+            }
+            function createTarget() { /*重點*/
+                var a=document.createElement("div");
+                a.className="target";
+                a.score=getRand(1,3);
+                a.w=110-a.score*30;
+                a.h=110-a.score*30;
+                a.style.width=a.w+"px";
+                a.style.height=a.h+"px";
+                a.style.top=getRand(0,600-50)+"px";
+                a.style.left=getRand(0,600-50)+"px";
+                a.style.backgroundColor=`rgb(${getRand(0,225)},${getRand(0,225)},${getRand(0,225)})`;
+                a.addEventListener("click",hit);
+                document.getElementById("board").appendChild(a);
+            }
+            function getRand(min,max) {
+                return Math.floor(Math.ramddom()*(max-min+1))+min;
+            }
+            function hit() {
+                if(!game_started) return;
+                var elm=event.target;
+                game_score+=eelm.score;
+                elm.remove();
+                document.getElementById("score").innerHTML=game_score;
+            }
+
+
+        </script>
+
+
+
+    </head>
+    <body>
+        <div id="status">得分：<span id="score">0</span>分</div>
+        <div id="timebar"></div>
+        <div id="board" onclick="gameStart();">
+        <div class="target" style="top: 100px; left: 10px;"></div>
+        </div>
+
+    </body>
+</html>
