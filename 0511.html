@@ -62,19 +62,19 @@
                 a.h=110-a.score*30;
                 a.style.width=a.w+"px";
                 a.style.height=a.h+"px";
-                a.style.top=getRand(0,600-50)+"px";
-                a.style.left=getRand(0,600-50)+"px";
+                a.style.top=getRand(0,600-a.h)+"px";
+                a.style.left=getRand(0,600-a.w)+"px";
                 a.style.backgroundColor=`rgb(${getRand(0,225)},${getRand(0,225)},${getRand(0,225)})`;
                 a.addEventListener("click",hit);
                 document.getElementById("board").appendChild(a);
             }
             function getRand(min,max) {
-                return Math.floor(Math.ramddom()*(max-min+1))+min;
+                return Math.floor(Math.random()*(max-min+1))+min;
             }
             function hit() {
                 if(!game_started) return;
                 var elm=event.target;
-                game_score+=eelm.score;
+                game_score+=elm.score;
                 elm.remove();
                 document.getElementById("score").innerHTML=game_score;
             }
@@ -88,9 +88,7 @@
     <body>
         <div id="status">得分：<span id="score">0</span>分</div>
         <div id="timebar"></div>
-        <div id="board" onclick="gameStart();">
-        <div class="target" style="top: 100px; left: 10px;"></div>
-        </div>
+        <div id="board" onclick="gameStart();"></div>
 
     </body>
 </html>
