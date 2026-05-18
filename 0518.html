@@ -1,0 +1,92 @@
+<html>
+    <head>
+        <title>鍵盤控制人物移動</title>
+        <style>
+            body {
+                background: url("pic/grass.jpg");
+                background-size: 300px 210px; /*調整背景大小*/
+            }
+            @keyframes walking {
+                0%{background-position-x: 0px;}
+                100%{background-position-x: -144px;}
+
+            }
+            #role {
+                width: 48px;
+                height: 72px;
+                background: url("pic/sprite.png");
+                /* background-position-y: -72px; /*格子不動 圖片動*/
+                animation: walking 1s steps(3) infinite;
+                position: absolute; /*父容器極為body*/
+
+            }
+        </style>
+        <script>
+            var role_dir={"ArrowDown":0,"ArrowUp":0,"ArrowLeft":0,"ArrowRight":0}
+            function mykeyup() {
+                var role=document.getElementById("role");
+                role.style.animationPlayState="paused" ;
+            }
+            /*function myinput() {
+                console.log(event.target.value); /*輸入中 
+            }
+            function mychange() {
+                console.log(event.target.value); /*輸入完後
+            } */
+           /*console.log("down:"+event.key);*/
+            function kd() {
+                event.preventDefault();
+                var role=document.getElementById("role");
+                if(event.key=="ArrowDown") { /*圖片的Y軸可以控制方向*/
+                    role.style.backgroundPositionY="0px";
+                } else if(event.key=="ArrowLeft") {
+                    role.style.backgroundPositionY="-72px";
+                } else if(event.key=="ArrowRight") {
+                    role.style.backgroundPositionY="-144px";
+                } else if(event.key=="ArrowUp") {
+                    role.style.backgroundPositionY="-216px";
+                }
+                role.way[event.key]=true;
+                role.style.animationPlayState="running"
+            }
+            function role_moving(){
+                var role=document.getElementById("role");
+                if(role.way["ArrowDown"]){
+                    role.pos.y++;
+                } else if(role.way["ArrowDown"]){
+                    if(role.pos.x > 0) role.pos.x--;
+                } else if(role.way["ArrowDown"]){
+                    role.pos.x++;
+                } else if(role.way["ArrowDown"]){
+                    if(role.pos.y > 0) role.pos.y--;
+                }
+
+                role.style.top=role.pos.y+"px";
+                role.style.left=role.pos.x+"px";
+            
+            }
+            function init() {
+                var role=document.getElementById("role");
+                role.pos={x:0,y:0};
+                role_d={"ArrowDown":0,"ArrowUp":0,"ArrowLeft":0,"ArrowRight":0};
+                role.style.top=role.pos.y+"px";
+                role.style.left=role.pos.x+"px";
+            }
+            /*function ku() {
+                console.log("up:"+event.key);
+            }
+            function kp() {
+                console.log("press:"+event.key);
+            }*/
+
+
+        </script>
+    </head>
+    <body onkeydown="kd();" onkeyup="mykeyup();" onload="init();"> 
+        <!-- div不適用鍵盤事件 適用滑鼠事件
+        <input type="text"> -->
+        <!-- <input type="text" oninput="myinput();" onchange="mychange();"> -->
+        <div id="role"></div>
+
+    </body>
+</html>
