@@ -48,7 +48,7 @@
             }
             function gameStop() {
                 game_started=false;
-                gmae_timer.forEach((t)=>{clearInterval(t)});
+                game_timer.forEach((t)=>{clearInterval(t)});
                 Array.form(document.getElementsByClassName("target")).forEach((a)=>{
                     a.remove();
                 });
