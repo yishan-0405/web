@@ -269,23 +269,24 @@
                 border: solid 16px black;
                 border-radius: 50%;
                 position: absolute;
-                margin: 28px;
+                margin: 24px;
             }
 
         </style>
         <script>
-            var x=1;
-            var y=0;
-            while(y<14){
-                while(x<14){
-                    x++;
-                    var a=document.createElement("div");
-                    a.className="target";
-                    a.style.left=(x*20)+"px";
-                    document.getElementById("board").appendChild(a);
+            window.addEventListener("DOMContentLoaded", function() {
+                var board = document.getElementById("board");
+                for (var y = 0; y < 14; y++) {
+                    for (var x = 0; x < 14; x++) {
+                        var a = document.createElement("div");
+                        a.className = "target";
+                        a.style.left = (x * 40) + "px";
+                        a.style.top = ( y * 40) + "px";
+                        board.appendChild(a);
+                        a.id=x+"-"+y; /*之後用id檢查*/  
+                    }
                 }
-                y++;
-            }
+            });
         </script>
     </head>
     <body>
