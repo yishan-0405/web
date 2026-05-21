@@ -259,17 +259,15 @@
                 position: absolute;
 
             }
-            #aa {
-                
-                
-            }
+
             .target { /*到時候把點設成透明 點了變色就好*/
                 width: 0px;
                 height: 0px;
                 border: solid 16px transparent;
                 border-radius: 50%;
                 position: absolute;
-                margin: 24px;
+                margin:24px;
+                
             }
 
         </style>
@@ -287,10 +285,26 @@
                     }
                 }
             });
+
+            var turnblack=true;
+
+            function black(){
+                var target = document.getElementById(event.target.id);
+                if(turnblack==true){  
+                    target.style.borderColor="black";
+                    target.className="black";
+                    turnblack=false;
+                } else {
+                    target.style.borderColor="white";
+                    target.className="white";
+                    turnblack=true;
+                }
+            }
+
         </script>
     </head>
     <body>
-        <div id="board">
+        <div id="board" >
             <div id="line"></div>
             <div id="lineA"></div>
             <div id="lineB"></div>
@@ -321,7 +335,10 @@
             <div id="lineC12"></div>
             <div id="lineC13"></div>
 
-            <div id="aa" class="target"></div>
+            <div class="target" onclick="black();"></div>
+            <div class="black"></div>
+            <div class="white"></div>
+
 
         </div>
     </body>
