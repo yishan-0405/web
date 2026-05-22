@@ -269,6 +269,12 @@
                 margin:24px;
                 
             }
+            .black{
+                background-color: black;
+            }
+            .white{
+                background-color: white;
+            }
 
         </style>
         <script>
@@ -286,25 +292,57 @@
                 }
             });
 
-            var turnblack=true;
+            var turnblack = true; /*黑子先下*/
 
-            function black(){
-                var target = document.getElementById(event.target.id);
-                if(turnblack==true){  
-                    target.style.borderColor="black";
-                    target.className="black";
-                    turnblack=false;
-                } else {
-                    target.style.borderColor="white";
-                    target.className="white";
-                    turnblack=true;
-                }
+            function black(elm){
+                document.getElementById("board").addEventListener("click", function(event) {
+                    console.log(event.target.id); 
+                    if (event.target.className === "target") {
+                        if (turnblack == true) {
+                            console.log("黑子下了");
+                            if(event.target.backgroundColor == "transparent"){
+                                alert("這裡已經有子了！");
+                            } else {
+                                event.target.classList.add("black");
+                                
+
+                            }
+                            //錯誤event.target.style.backgroundColor = "black";
+                            let turnblack = false; /*換白子下*/
+                        }
+                        if (turnblack == false) {
+                            console.log("白子下了");
+                            //event.target.style.backgroundColor = "white";
+                            //錯var turnblack = true;// /*換黑子下*/
+                        }
+                    }
+
+                });
+                
+            }
+
+            function checkblack(){
+                //if(){
+                    //endingblack();
+                //}
+            }
+            function checkwhite(){
+                //if(){
+                  //  endingwhite();
+                //}
+            }
+            
+            function endingblack(){
+                alert("黑子勝！");
+            }
+            function endingwhite(){
+                alert("白子勝！");
             }
 
         </script>
     </head>
     <body>
-        <div id="board" >
+        <div id="board" onclick="black(this);">
             <div id="line"></div>
             <div id="lineA"></div>
             <div id="lineB"></div>
@@ -335,7 +373,7 @@
             <div id="lineC12"></div>
             <div id="lineC13"></div>
 
-            <div class="target" onclick="black();"></div>
+            <div class="target"></div>
             <div class="black"></div>
             <div class="white"></div>
 
