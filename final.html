@@ -292,32 +292,38 @@
                 }
             });
 
-            var turnblack = true; /*黑子先下*/
+            turnblack = true; /*黑子先下*/
 
             function black(elm){
+                //把第一次按下去alert遊戲開始 且只一次
+                //暗地一下時不會動 但是有執行black 沒有執行後面
                 document.getElementById("board").addEventListener("click", function(event) {
                     console.log(event.target.id); 
                     if (event.target.className === "target") {
                         if (turnblack == true) {
                             console.log("黑子下了");
-                            if(event.target.backgroundColor == "transparent"){
-                                alert("這裡已經有子了！");
+                            if(event.target.backgroundColor == "transparent" ){
+                                alert("這裡已經有棋子了！");
                             } else {
                                 event.target.classList.add("black");
-                                
-
                             }
                             //錯誤event.target.style.backgroundColor = "black";
-                            let turnblack = false; /*換白子下*/
-                        }
-                        if (turnblack == false) {
+                            turnblack = false; /*換白子下*/
+                            
+                        }else if (turnblack == false) {
                             console.log("白子下了");
+                            if(event.target.backgroundColor == "transparent"){
+                                alert("這裡已經有棋子了！");
+                            } else {
+                                event.target.classList.add("white");
+                            }
                             //event.target.style.backgroundColor = "white";
-                            //錯var turnblack = true;// /*換黑子下*/
+                            turnblack = true;// /*換黑子下*/
+    
                         }
                     }
 
-                });
+                },{once:true});//執行一次就把被點擊的event.target清除 才不會重複執行
                 
             }
 
