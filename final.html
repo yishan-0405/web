@@ -1,12 +1,25 @@
 <html>
     <head>
         <title>期末作業</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Cactus+Classical+Serif&display=swap" rel="stylesheet">
         <style>
+            #title{
+                font-size: 40px;
+                color: #376f4e;
+                transition: color 1s;
+                font-family: "Cactus Classical Serif", serif;
+                margin: 5px;
+                
+            
+            }
+
             #board {
                 width: 600px;
                 height: 600px;
                 background-color:#f1c680;
-                margin: 50px;
+                margin: 30px ;
                 position: relative;
             }
             #line {
@@ -278,7 +291,7 @@
 
         </style>
         <script>
-            window.addEventListener("DOMContentLoaded", function() {
+            window.addEventListener("DOMContentLoaded", function() { //type為load時
                 var board = document.getElementById("board");
                 for (var y = 0; y < 14; y++) {
                     for (var x = 0; x < 14; x++) {
@@ -293,34 +306,43 @@
             });
 
             turnblack = true; /*黑子先下*/
+            x=0;//解決第一下無法下棋的問題
+            gamestart=false;
 
             function black(elm){
-                //把第一次按下去alert遊戲開始 且只一次
-                //暗地一下時不會動 但是有執行black 沒有執行後面
+
+                while(x==0){
+                    alert("開始START~~~!");
+                    x++;
+                    gamestart=true;
+                }
+
                 document.getElementById("board").addEventListener("click", function(event) {
                     console.log(event.target.id); 
-                    if (event.target.className === "target") {
+
+                if(gamestart==false) return; //如果遊戲沒開始就不執行
+
+                    if (event.target.className === "target") { //如果已經變過顏色 classname會變成black or white
+
                         if (turnblack == true) {
-                            console.log("黑子下了");
-                            if(event.target.backgroundColor == "transparent" ){
-                                alert("這裡已經有棋子了！");
-                            } else {
-                                event.target.classList.add("black");
-                            }
-                            //錯誤event.target.style.backgroundColor = "black";
+                            event.target.classList.add("black");
+                            setTimeout(function(){ //100ms後執行checkblack
+                                checkblack();
+                            },100);
                             turnblack = false; /*換白子下*/
                             
                         }else if (turnblack == false) {
-                            console.log("白子下了");
-                            if(event.target.backgroundColor == "transparent"){
-                                alert("這裡已經有棋子了！");
-                            } else {
-                                event.target.classList.add("white");
-                            }
-                            //event.target.style.backgroundColor = "white";
-                            turnblack = true;// /*換黑子下*/
+                            event.target.classList.add("white");
+                            turnblack = true; /*換黑子下*/
+                            setTimeout(function(){ //100ms後執行checkwhite
+                                checkwhite();
+                            },100);
     
                         }
+                    }else if (event.target.classList.contains("black") || event.target.classList.contains("white")) { 
+                        alert("這裡已經有棋子了！");
+                    }else{
+                        alert("請點擊棋盤線交點！");//按到其他地方
                     }
 
                 },{once:true});//執行一次就把被點擊的event.target清除 才不會重複執行
@@ -328,27 +350,124 @@
             }
 
             function checkblack(){
-                //if(){
-                    //endingblack();
-                //}
+                //x同 直排
+                for(var x=0;x<14;x++){
+                    for(var y=0;y<10;y++){ 
+                        if(document.getElementById(x+"-"+y).classList.contains("black")&&  
+                        document.getElementById(x+"-"+(y+1)).classList.contains("black")&&
+                        document.getElementById(x+"-"+(y+2)).classList.contains("black")&&
+                        document.getElementById(x+"-"+(y+3)).classList.contains("black")&&
+                        document.getElementById(x+"-"+(y+4)).classList.contains("black")){
+                            endingblack();
+                        }
+                    }
+                }
+                //y同 橫
+                for(var y=0;y<14;y++){
+                    for(var x=0;x<10;x++){
+                        if(document.getElementById(x+"-"+y).classList.contains("black")&&  
+                        document.getElementById((x+1)+"-"+y).classList.contains("black")&&
+                        document.getElementById((x+2)+"-"+y).classList.contains("black")&&
+                        document.getElementById((x+3)+"-"+y).classList.contains("black")&&
+                        document.getElementById((x+4)+"-"+y).classList.contains("black")){
+                            endingblack();
+                        }
+                    }
+                }
+                //斜向右下
+                for(var x=0;x<10;x++){
+                    for(var y=0;y<10;y++){
+                        if(document.getElementById(x+"-"+y).classList.contains("black")&&  
+                        document.getElementById((x+1)+"-"+(y+1)).classList.contains("black")&&
+                        document.getElementById((x+2)+"-"+(y+2)).classList.contains("black")&&
+                        document.getElementById((x+3)+"-"+(y+3)).classList.contains("black")&&
+                        document.getElementById((x+4)+"-"+(y+4)).classList.contains("black")){
+                            endingblack();
+                        }
+                    }
+                }
+                //斜向左下
+                for(var x=13;x>=4;x--){
+                    for(var y=0;y<10;y++){
+                        if(document.getElementById(x+"-"+y).classList.contains("black")&&  
+                        document.getElementById((x-1)+"-"+(y+1)).classList.contains("black")&&
+                        document.getElementById((x-2)+"-"+(y+2)).classList.contains("black")&&
+                        document.getElementById((x-3)+"-"+(y+3)).classList.contains("black")&&
+                        document.getElementById((x-4)+"-"+(y+4)).classList.contains("black")){
+                            endingblack();
+                        }
+                    }
+                }
             }
             function checkwhite(){
-                //if(){
-                  //  endingwhite();
-                //}
+                //x同 直排
+                for(var x=0;x<14;x++){
+                    for(var y=0;y<10;y++){ 
+                        if(document.getElementById(x+"-"+y).classList.contains("white")&&  
+                        document.getElementById(x+"-"+(y+1)).classList.contains("white")&&
+                        document.getElementById(x+"-"+(y+2)).classList.contains("white")&&
+                        document.getElementById(x+"-"+(y+3)).classList.contains("white")&&
+                        document.getElementById(x+"-"+(y+4)).classList.contains("white")){
+                            endingwhite();
+                        }
+                    }
+                }
+                //y同 橫
+                for(var y=0;y<14;y++){
+                    for(var x=0;x<10;x++){
+                        if(document.getElementById(x+"-"+y).classList.contains("white")&&  
+                        document.getElementById((x+1)+"-"+y).classList.contains("white")&&
+                        document.getElementById((x+2)+"-"+y).classList.contains("white")&&
+                        document.getElementById((x+3)+"-"+y).classList.contains("white")&&
+                        document.getElementById((x+4)+"-"+y).classList.contains("white")){
+                            endingwhite();
+                        }
+                    }
+                }
+                //斜向右下
+                for(var x=0;x<10;x++){
+                    for(var y=0;y<10;y++){
+                        if(document.getElementById(x+"-"+y).classList.contains("white")&&  
+                        document.getElementById((x+1)+"-"+(y+1)).classList.contains("white")&&
+                        document.getElementById((x+2)+"-"+(y+2)).classList.contains("white")&&
+                        document.getElementById((x+3)+"-"+(y+3)).classList.contains("white")&&
+                        document.getElementById((x+4)+"-"+(y+4)).classList.contains("white")){
+                            endingwhite();
+                        }
+                    }
+                }
+                //斜向左下
+                for(var x=13;x>=4;x--){
+                    for(var y=0;y<10;y++){
+                        if(document.getElementById(x+"-"+y).classList.contains("white")&&
+                        document.getElementById((x-1)+"-"+(y+1)).classList.contains("white")&&
+                        document.getElementById((x-2)+"-"+(y+2)).classList.contains("white")&&
+                        document.getElementById((x-3)+"-"+(y+3)).classList.contains("white")&&
+                        document.getElementById((x-4)+"-"+(y+4)).classList.contains("white")){
+                            endingwhite();
+                        }
+                    }
+                }
             }
             
             function endingblack(){
                 alert("黑子勝！");
+                gamestart=false;
             }
             function endingwhite(){
                 alert("白子勝！");
+                gamestart=false;
             }
 
         </script>
     </head>
     <body>
+        <div id="title">五子棋</div><hr>
+        <b>&emsp;遊戲說明：</b><br>
+        &emsp;黑子先下，先使五子連成一線者獲勝。&emsp;
+        <i><u>點擊「棋盤」遊戲開始</u></i>
         <div id="board" onclick="black(this);">
+            <!-- 棋盤 -->
             <div id="line"></div>
             <div id="lineA"></div>
             <div id="lineB"></div>
@@ -378,7 +497,7 @@
             <div id="lineC11"></div>
             <div id="lineC12"></div>
             <div id="lineC13"></div>
-
+            <!-- 棋子 -->
             <div class="target"></div>
             <div class="black"></div>
             <div class="white"></div>
