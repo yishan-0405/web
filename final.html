@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>期末作業</title>
+        <title>期末作業 當輪到黑旗把背景變深色</title>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Cactus+Classical+Serif&display=swap" rel="stylesheet">
@@ -10,23 +10,35 @@
                 color: #376f4e;
                 transition: color 1s;
                 font-family: "Cactus Classical Serif", serif;
-                margin: 5px;
+                margin-left: 10px;
                 
             
+            }
+
+            #back {
+                width: 100%;
+                height: 100%;
+                background: url("pic/t.png");
+                background-size: 1520px 1000px;
+                position: fixed;
+                top: 0;
+                left: 0;
+                z-index: -1; /*使其在最下面*/
             }
 
             #board {
                 width: 600px;
                 height: 600px;
                 background-color:#f1c680;
-                margin: 30px ;
+                margin-top: 15px;
+                margin-left: 18px;
                 position: relative;
             }
             #line {
                 width: 570px;
                 height: 570px;
                 background-color: transparent;
-                border: solid 15px #c08f6a;
+                border: solid 15.5px #c08f6a;
                 position: absolute ;                
             }
             #lineA {
@@ -288,6 +300,24 @@
             .white{
                 background-color: white;
             }
+            @keyframes kwinning {
+                0%{ background-color: rgb(146, 1, 1); }
+                50%{ background-color: rgb(252, 86, 3); }
+                100%{ background-color: rgb(146, 1, 1); }
+            }
+            .winning{
+                background-color: rgb(146, 1, 1);
+                animation: kwinning 1s infinite;
+            }
+             @keyframes kwinning2 {
+                0%{ background-color: rgb(225, 75, 75); }
+                50%{ background-color: rgb(252, 3, 3); }
+                100%{ background-color: rgb(255, 75, 75); }
+            }
+            .winning2{
+                background-color: rgb(255, 75, 75);
+                animation: kwinning2 1s infinite;
+            }
 
         </style>
         <script>
@@ -337,7 +367,6 @@
                             setTimeout(function(){ //100ms後執行checkwhite
                                 checkwhite();
                             },100);
-    
                         }
                     }else if (event.target.classList.contains("black") || event.target.classList.contains("white")) { 
                         alert("這裡已經有棋子了！");
@@ -358,7 +387,14 @@
                         document.getElementById(x+"-"+(y+2)).classList.contains("black")&&
                         document.getElementById(x+"-"+(y+3)).classList.contains("black")&&
                         document.getElementById(x+"-"+(y+4)).classList.contains("black")){
-                            endingblack();
+                            document.getElementById(x+"-"+y).classList.add("winning");
+                            document.getElementById(x+"-"+(y+1)).classList.add("winning");  
+                            document.getElementById(x+"-"+(y+2)).classList.add("winning");  
+                            document.getElementById(x+"-"+(y+3)).classList.add("winning");  
+                            document.getElementById(x+"-"+(y+4)).classList.add("winning"); 
+                            setTimeout(function(){ 
+                                endingblack();
+                            },100);
                         }
                     }
                 }
@@ -370,7 +406,14 @@
                         document.getElementById((x+2)+"-"+y).classList.contains("black")&&
                         document.getElementById((x+3)+"-"+y).classList.contains("black")&&
                         document.getElementById((x+4)+"-"+y).classList.contains("black")){
+                            document.getElementById(x+"-"+y).classList.add("winning");
+                            document.getElementById((x+1)+"-"+y).classList.add("winning");
+                            document.getElementById((x+2)+"-"+y).classList.add("winning");
+                            document.getElementById((x+3)+"-"+y).classList.add("winning");
+                            document.getElementById((x+4)+"-"+y).classList.add("winning");
+                            setTimeout(function(){
                             endingblack();
+                            },100);
                         }
                     }
                 }
@@ -382,7 +425,14 @@
                         document.getElementById((x+2)+"-"+(y+2)).classList.contains("black")&&
                         document.getElementById((x+3)+"-"+(y+3)).classList.contains("black")&&
                         document.getElementById((x+4)+"-"+(y+4)).classList.contains("black")){
-                            endingblack();
+                            document.getElementById(x+"-"+y).classList.add("winning");
+                            document.getElementById((x+1)+"-"+(y+1)).classList.add("winning");
+                            document.getElementById((x+2)+"-"+(y+2)).classList.add("winning");
+                            document.getElementById((x+3)+"-"+(y+3)).classList.add("winning");
+                            document.getElementById((x+4)+"-"+(y+4)).classList.add("winning");
+                            setTimeout(function(){
+                                endingblack();
+                            },100);
                         }
                     }
                 }
@@ -394,7 +444,14 @@
                         document.getElementById((x-2)+"-"+(y+2)).classList.contains("black")&&
                         document.getElementById((x-3)+"-"+(y+3)).classList.contains("black")&&
                         document.getElementById((x-4)+"-"+(y+4)).classList.contains("black")){
-                            endingblack();
+                            document.getElementById(x+"-"+y).classList.add("winning");
+                            document.getElementById((x-1)+"-"+(y+1)).classList.add("winning");
+                            document.getElementById((x-2)+"-"+(y+2)).classList.add("winning");
+                            document.getElementById((x-3)+"-"+(y+3)).classList.add("winning");
+                            document.getElementById((x-4)+"-"+(y+4)).classList.add("winning");
+                            setTimeout(function(){
+                                endingblack();
+                            },100);
                         }
                     }
                 }
@@ -408,7 +465,14 @@
                         document.getElementById(x+"-"+(y+2)).classList.contains("white")&&
                         document.getElementById(x+"-"+(y+3)).classList.contains("white")&&
                         document.getElementById(x+"-"+(y+4)).classList.contains("white")){
-                            endingwhite();
+                            document.getElementById(x+"-"+y).classList.add("winning2");
+                            document.getElementById(x+"-"+(y+1)).classList.add("winning2");
+                            document.getElementById(x+"-"+(y+2)).classList.add("winning2");
+                            document.getElementById(x+"-"+(y+3)).classList.add("winning2");
+                            document.getElementById(x+"-"+(y+4)).classList.add("winning2");
+                            setTimeout(function(){
+                                endingwhite();
+                            },100);
                         }
                     }
                 }
@@ -420,7 +484,14 @@
                         document.getElementById((x+2)+"-"+y).classList.contains("white")&&
                         document.getElementById((x+3)+"-"+y).classList.contains("white")&&
                         document.getElementById((x+4)+"-"+y).classList.contains("white")){
-                            endingwhite();
+                            document.getElementById(x+"-"+y).classList.add("winning2");
+                            document.getElementById((x+1)+"-"+y).classList.add("winning2");
+                            document.getElementById((x+2)+"-"+y).classList.add("winning2");
+                            document.getElementById((x+3)+"-"+y).classList.add("winning2");
+                            document.getElementById((x+4)+"-"+y).classList.add("winning2");
+                            setTimeout(function(){
+                                endingwhite();
+                            },100);
                         }
                     }
                 }
@@ -432,7 +503,14 @@
                         document.getElementById((x+2)+"-"+(y+2)).classList.contains("white")&&
                         document.getElementById((x+3)+"-"+(y+3)).classList.contains("white")&&
                         document.getElementById((x+4)+"-"+(y+4)).classList.contains("white")){
-                            endingwhite();
+                            document.getElementById(x+"-"+y).classList.add("winning2");
+                            document.getElementById((x+1)+"-"+(y+1)).classList.add("winning2");
+                            document.getElementById((x+2)+"-"+(y+2)).classList.add("winning2");
+                            document.getElementById((x+3)+"-"+(y+3)).classList.add("winning2");
+                            document.getElementById((x+4)+"-"+(y+4)).classList.add("winning2");
+                            setTimeout(function(){
+                                endingwhite();
+                            },100);
                         }
                     }
                 }
@@ -444,7 +522,14 @@
                         document.getElementById((x-2)+"-"+(y+2)).classList.contains("white")&&
                         document.getElementById((x-3)+"-"+(y+3)).classList.contains("white")&&
                         document.getElementById((x-4)+"-"+(y+4)).classList.contains("white")){
-                            endingwhite();
+                            document.getElementById(x+"-"+y).classList.add("winning2");
+                            document.getElementById((x-1)+"-"+(y+1)).classList.add("winning2");
+                            document.getElementById((x-2)+"-"+(y+2)).classList.add("winning2");
+                            document.getElementById((x-3)+"-"+(y+3)).classList.add("winning2");
+                            document.getElementById((x-4)+"-"+(y+4)).classList.add("winning2");
+                            setTimeout(function(){
+                                endingwhite();
+                            },100);
                         }
                     }
                 }
@@ -462,10 +547,13 @@
         </script>
     </head>
     <body>
+        <div id="back"></div> </!-- 放最下面 -->
+
         <div id="title">五子棋</div><hr>
         <b>&emsp;遊戲說明：</b><br>
         &emsp;黑子先下，先使五子連成一線者獲勝。&emsp;
         <i><u>點擊「棋盤」遊戲開始</u></i>
+        
         <div id="board" onclick="black(this);">
             <!-- 棋盤 -->
             <div id="line"></div>
@@ -501,6 +589,9 @@
             <div class="target"></div>
             <div class="black"></div>
             <div class="white"></div>
+            <div class="winning"></div>
+            <div class="winning2"></div>
+
 
 
         </div>
