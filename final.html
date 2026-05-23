@@ -393,15 +393,15 @@
                 },{once:true});//執行一次就把被點擊的event.target清除 才不會重複執行
                 
             }
-            //function backturn(){
-            //    while(gamestart==true){
-              //      if(turnblack==true){
-                //        document.getElementById("back").style.filter="brightness(50%)";
-                  //  }else{
-                    //    document.getElementById("back").style.filter="brightness(100%)";
-            //        }
-              //  }
-            //}
+            function backturn(){
+                while(gamestart==true){
+                    if(turnblack==true){
+                        document.getElementById("back").style.filter="brightness(50%)";
+                    }else{
+                        document.getElementById("back").style.filter="brightness(100%)";
+                    }
+               }
+            }
 
             function checkblack(){
                 //x同 直排
