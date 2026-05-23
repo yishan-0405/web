@@ -362,7 +362,7 @@
                     },1000);
                     x++;
                 }
-
+                backturn();
                 document.getElementById("board").addEventListener("click", function(event) {
                     console.log(event.target.id); 
 
@@ -394,9 +394,11 @@
                 
             }
             function backturn(){
-                while(gamestart==true){
+                if(gamestart==true){
+                    console.log("000");
                     if(turnblack==true){
                         document.getElementById("back").style.filter="brightness(50%)";
+                        remove;
                     }else{
                         document.getElementById("back").style.filter="brightness(100%)";
                     }
