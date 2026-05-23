@@ -4,12 +4,16 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Cactus+Classical+Serif&display=swap" rel="stylesheet">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Yuji+Syuku&display=swap" rel="stylesheet">
         <style>
             #title{
                 font-size: 40px;
                 color: #376f4e;
                 transition: color 1s;
-                font-family: "Cactus Classical Serif", serif;
+                font-family: "Cactus Classical Serif";
                 margin-left: 10px;
                 
             
@@ -157,16 +161,7 @@
                 position: absolute;
 
             }
-            #lineB13 {
-                width: 4px;
-                height: 512px;
-                background-color: black;
-                margin-left: 558px;
-                margin-top: 44px;
-                position: absolute;
-
-            }
-
+            
             #lineC {
                 width: 512px;
                 height: 4px;
@@ -275,15 +270,6 @@
                 position: absolute;
 
             }
-            #lineC13 {
-                width: 512px;
-                height: 4px;
-                background-color: black;
-                margin-left: 44px;
-                margin-top: 558px;
-                position: absolute;
-
-            }
 
             .target { /*到時候把點設成透明 點了變色就好*/
                 width: 0px;
@@ -318,6 +304,15 @@
                 background-color: rgb(255, 75, 75);
                 animation: kwinning2 1s infinite;
             }
+            #number {
+                position: absolute;
+                margin-left: 105px;
+                margin-top: 190px;
+                font-size: 130px;
+                z-index: 1;
+                color: #e20b36;
+                font-family:"Yuji Syuku";
+            }
 
         </style>
         <script>
@@ -340,11 +335,32 @@
             gamestart=false;
 
             function black(elm){
-
+                console.log("點擊棋盤");
                 while(x==0){
-                    alert("開始START~~~!");
+                    console.log("遊戲開始倒數");
+                    document.getElementById("number").innerHTML="&ensp;&ensp;三";
+                    setTimeout(function(){
+                        console.log("3");
+                        document.getElementById("number").innerHTML="&ensp;&ensp;二";
+                    
+                        setTimeout(function(){
+                            console.log("2");
+                            document.getElementById("number").innerHTML="&ensp;&ensp;一";
+                    
+                            setTimeout(function(){
+                                console.log("1");
+                                document.getElementById("number").innerHTML="開始！";
+                    
+                                setTimeout(function(){
+                                    console.log("START!!");
+                                    document.getElementById("number").innerHTML="";
+                                    gamestart=true; //前面跑完後才可以點
+                                },1000);   
+                            },1000);
+                        },1000);
+                    },1000);
                     x++;
-                    gamestart=true;
+                    
                 }
 
                 document.getElementById("board").addEventListener("click", function(event) {
@@ -377,6 +393,15 @@
                 },{once:true});//執行一次就把被點擊的event.target清除 才不會重複執行
                 
             }
+            //function backturn(){
+            //    while(gamestart==true){
+              //      if(turnblack==true){
+                //        document.getElementById("back").style.filter="brightness(50%)";
+                  //  }else{
+                    //    document.getElementById("back").style.filter="brightness(100%)";
+            //        }
+              //  }
+            //}
 
             function checkblack(){
                 //x同 直排
@@ -547,14 +572,16 @@
         </script>
     </head>
     <body>
-        <div id="back"></div> </!-- 放最下面 -->
+        <!--<div id="back"></div> </!-- 放最下面 -->
 
         <div id="title">五子棋</div><hr>
         <b>&emsp;遊戲說明：</b><br>
-        &emsp;黑子先下，先使五子連成一線者獲勝。&emsp;
+        &emsp;黑子先下，先使五子連成一線者獲勝 (不可毀棋!)&emsp;
         <i><u>點擊「棋盤」遊戲開始</u></i>
-        
+        <div id="back"></div> </!-- 放最下面 -->
         <div id="board" onclick="black(this);">
+            <div id="number"></div>
+            
             <!-- 棋盤 -->
             <div id="line"></div>
             <div id="lineA"></div>
