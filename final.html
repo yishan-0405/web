@@ -15,8 +15,6 @@
                 transition: color 1s;
                 font-family: "Cactus Classical Serif";
                 margin-left: 10px;
-                
-            
             }
 
             #back {
@@ -28,6 +26,9 @@
                 top: 0;
                 left: 0;
                 z-index: -1; /*使其在最下面*/
+            }
+            .backstart{
+                background-color: rgba(255, 255, 255, 0.666);
             }
 
             #board {
@@ -358,9 +359,8 @@
                                 },1000);   
                             },1000);
                         },1000);
-                    },1000);
                     x++;
-                    
+                    },1000);
                 }
 
                 document.getElementById("board").addEventListener("click", function(event) {
@@ -572,7 +572,11 @@
         </script>
     </head>
     <body>
+<<<<<<< HEAD
         <!--<div id="back"></div> </!-- 放最下面 -->
+=======
+        <div id="back" class="backstart"></div> </!-- 放最下面 -->
+>>>>>>> 436bf394e069d8556d0dd3d5583b892ce80db487
 
         <div id="title">五子棋</div><hr>
         <b>&emsp;遊戲說明：</b><br>
