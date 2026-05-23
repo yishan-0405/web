@@ -1,20 +1,52 @@
 <html>
     <head>
-        <title>期末作業 當輪到黑旗把背景變深色</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Cactus+Classical+Serif&display=swap" rel="stylesheet">
+        <title>期末作業</title>
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Yuji+Syuku&display=swap" rel="stylesheet">
         <style>
+            button{
+                font-size: 18px;
+                font-family: "Yuji Syuku";
+                margin-top: 70px;
+                margin-left: 500px;
+                position: absolute;
+            }
+            #border {
+                width: 700px;
+                height: 90px;
+                background-color: transparent;
+                position: relative;
+            }
             #title{
-                font-size: 40px;
+                font-size: 50px;
                 color: #376f4e;
-                transition: color 1s;
-                font-family: "Cactus Classical Serif";
-                margin-left: 10px;
+                font-family: "yuji syuku";
+                margin-top: 15px;
+                margin-left:20px;
+                position: absolute;
+            }
+            #text {
+                font-size: 20px;
+                color: black;
+                margin-top: 10px;
+                margin-left: 200px;
+                position: absolute;
+                
+            }
+            #turncolor {
+                font-size: 60px;
+                font-family: "Yuji Syuku";
+                margin-top: 13px;
+                margin-left: 25px;
+                position: absolute;
+            }
+            .tblack{
+                color: #a5cdb6;
+            }
+            .twhite{
+                color: #34734d;
             }
 
             #back {
@@ -297,12 +329,12 @@
                 animation: kwinning 1s infinite;
             }
              @keyframes kwinning2 {
-                0%{ background-color: rgb(225, 75, 75); }
-                50%{ background-color: rgb(252, 3, 3); }
-                100%{ background-color: rgb(255, 75, 75); }
+                0%{ background-color: rgb(252, 3, 3); }
+                50%{ background-color: rgb(247, 102, 102); }
+                100%{ background-color: rgb(252, 3, 3); }
             }
             .winning2{
-                background-color: rgb(255, 75, 75);
+                background-color: rgb(252, 3, 3);
                 animation: kwinning2 1s infinite;
             }
             #number {
@@ -334,35 +366,43 @@
             turnblack = true; /*黑子先下*/
             x=0;//解決第一下無法下棋的問題
             gamestart=false;
-
+            
             function black(elm){
                 console.log("點擊棋盤");
                 while(x==0){
                     console.log("遊戲開始倒數");
                     document.getElementById("number").innerHTML="&ensp;&ensp;三";
+                    console.log("3");
                     setTimeout(function(){
-                        console.log("3");
                         document.getElementById("number").innerHTML="&ensp;&ensp;二";
-                    
+                        console.log("2");
                         setTimeout(function(){
-                            console.log("2");
                             document.getElementById("number").innerHTML="&ensp;&ensp;一";
-                    
+                            console.log("1");
                             setTimeout(function(){
-                                console.log("1");
                                 document.getElementById("number").innerHTML="開始！";
-                    
+                                console.log("START!!");
                                 setTimeout(function(){
-                                    console.log("START!!");
                                     document.getElementById("number").innerHTML="";
                                     gamestart=true; //前面跑完後才可以點
+                                    console.log(turnblack);
+                                    console.log(gamestart);
+                                    document.getElementById("back").style.filter="brightness(50%)";
+                                    document.getElementById("turncolor").innerHTML="黑子回合";
+                                    document.getElementById("turncolor").classList.remove("twhite");
+                                    document.getElementById("turncolor").classList.add("tblack");
+                                    console.log("黑子回合");
+                                    document.getElementById("title").innerHTML="";
+                                    document.getElementById("text").innerHTML="";
                                 },1000);   
                             },1000);
                         },1000);
                     },1000);
                     x++;
+                    
+                    
                 }
-                backturn();
+                
                 document.getElementById("board").addEventListener("click", function(event) {
                     console.log(event.target.id); 
 
@@ -374,15 +414,23 @@
                             event.target.classList.add("black");
                             setTimeout(function(){ //100ms後執行checkblack
                                 checkblack();
+                                setTimeout(function(){
+                                    backturn();
+                                },100);
                             },100);
-                            turnblack = false; /*換白子下*/
                             
+                            turnblack = false; /*換白子下*/
                         }else if (turnblack == false) {
                             event.target.classList.add("white");
-                            turnblack = true; /*換黑子下*/
+                            
                             setTimeout(function(){ //100ms後執行checkwhite
                                 checkwhite();
+                                setTimeout(function(){
+                                    backturn();
+                                },100);
                             },100);
+                            
+                            turnblack = true; /*換黑子下*/
                         }
                     }else if (event.target.classList.contains("black") || event.target.classList.contains("white")) { 
                         alert("這裡已經有棋子了！");
@@ -394,13 +442,20 @@
                 
             }
             function backturn(){
-                if(gamestart==true){
-                    console.log("000");
-                    if(turnblack==true){
+                if(gamestart){
+                    console.log("執行棋盤變色");
+                    if(turnblack){
                         document.getElementById("back").style.filter="brightness(50%)";
-                        remove;
+                        document.getElementById("turncolor").innerHTML="黑子回合";
+                        document.getElementById("turncolor").classList.remove("twhite");
+                        document.getElementById("turncolor").classList.add("tblack");
+                        console.log("黑子回合");
                     }else{
                         document.getElementById("back").style.filter="brightness(100%)";
+                        document.getElementById("turncolor").innerHTML="白子回合";
+                        document.getElementById("turncolor").classList.remove("tblack");
+                        document.getElementById("turncolor").classList.add("twhite");
+                        console.log("白子回合");
                     }
                }
             }
@@ -563,26 +618,33 @@
             }
             
             function endingblack(){
-                alert("黑子勝！");
                 gamestart=false;
+                document.getElementById("turncolor").innerHTML="黑子勝！";
             }
             function endingwhite(){
-                alert("白子勝！");
                 gamestart=false;
+                document.getElementById("turncolor").innerHTML="白子勝！";
             }
-
+            function return0(){
+                location.reload();//重新載入
+            }
         </script>
     </head>
     <body>
-        <div id="title">五子棋</div><hr>
-        <b>&emsp;遊戲說明：</b><br>
-        &emsp;黑子先下，先使五子連成一線者獲勝 (不可毀棋!)&emsp;
-        <i><u>點擊「棋盤」遊戲開始</u></i>
-        <div id="back"></div> </!-- 放最下面 -->
-        <div id="board" onclick="black(this);">
+        <div id="border">
+            <div id="title"><b>五子棋</b></div><!--<div id="hr"><hr></div>-->
+            <div id="text"><b>遊戲說明：</b><br>
+            <b>黑子先下，先使五子連成一線者獲勝 (不可毀棋!)&emsp;</b><br>
+            <u><i>點擊「棋盤」遊戲開始</i></u>
+            </div>
+
+            <div id="turncolor" class="tblack twhite"></div>
+
+            <button onclick="return0();">重新開始</button>
+        </div>
+        <div id="back"></div>
+        <div id="board" onclick="black()">
             <div id="number"></div>
-            
-            <!-- 棋盤 -->
             <div id="line"></div>
             <div id="lineA"></div>
             <div id="lineB"></div>
@@ -618,9 +680,6 @@
             <div class="white"></div>
             <div class="winning"></div>
             <div class="winning2"></div>
-
-
-
         </div>
     </body>
 </html>
