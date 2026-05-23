@@ -49,6 +49,34 @@
                 color: #34734d;
             }
 
+            @keyframes winblack {
+                0%{ color: #7fdba7; }
+                20%{ color: #81b6d3; }
+                35%{ color: #d081d3; }
+                50%{ color: #db8d99; }
+                70%{ color: #d3b881; }
+                85%{ color: #81d382; }
+                100%{ color: #7fdba7; }
+            }
+            .winblack{
+                color: #7fdba7;
+                animation: winblack 1s infinite;
+            }
+            @keyframes winwhite {
+                0%{ color: #34734d; }
+                17%{ color: #50648b; }
+                35%{ color: #89508b; }
+                48%{ color: #fd7798; }
+                60%{ color: #e17b59; }
+                72%{ color: #edd653; }
+                88%{ color: #4bbd56; }
+                100%{ color: #34734d; }
+
+            }
+            .winwhite{
+                color:  #34734d;
+                animation: winwhite 1s infinite;
+            }
             #back {
                 width: 100%;
                 height: 100%;
@@ -320,17 +348,17 @@
                 background-color: white;
             }
             @keyframes kwinning {
-                0%{ background-color: rgb(146, 1, 1); }
-                50%{ background-color: rgb(252, 86, 3); }
-                100%{ background-color: rgb(146, 1, 1); }
+                0%{ background-color: rgb(225, 0, 0); }
+                50%{ background-color: rgb(177, 5, 25); }
+                100%{ background-color: rgb(225, 0, 0); }
             }
             .winning{
-                background-color: rgb(146, 1, 1);
+                background-color: rgb(225, 0, 0);
                 animation: kwinning 1s infinite;
             }
              @keyframes kwinning2 {
                 0%{ background-color: rgb(252, 3, 3); }
-                50%{ background-color: rgb(247, 102, 102); }
+                50%{ background-color: rgb(153, 2, 40); }
                 100%{ background-color: rgb(252, 3, 3); }
             }
             .winning2{
@@ -390,6 +418,8 @@
                                     document.getElementById("back").style.filter="brightness(50%)";
                                     document.getElementById("turncolor").innerHTML="黑子回合";
                                     document.getElementById("turncolor").classList.remove("twhite");
+                                    document.getElementById("turncolor").classList.remove("winwhite");
+                                    document.getElementById("turncolor").classList.remove("winblack");
                                     document.getElementById("turncolor").classList.add("tblack");
                                     console.log("黑子回合");
                                     document.getElementById("title").innerHTML="";
@@ -448,12 +478,16 @@
                         document.getElementById("back").style.filter="brightness(50%)";
                         document.getElementById("turncolor").innerHTML="黑子回合";
                         document.getElementById("turncolor").classList.remove("twhite");
+                        document.getElementById("turncolor").classList.remove("winwhite");
+                        document.getElementById("turncolor").classList.remove("winblack");
                         document.getElementById("turncolor").classList.add("tblack");
                         console.log("黑子回合");
                     }else{
                         document.getElementById("back").style.filter="brightness(100%)";
                         document.getElementById("turncolor").innerHTML="白子回合";
                         document.getElementById("turncolor").classList.remove("tblack");
+                        document.getElementById("turncolor").classList.remove("winwhite");
+                        document.getElementById("turncolor").classList.remove("winblack");
                         document.getElementById("turncolor").classList.add("twhite");
                         console.log("白子回合");
                     }
@@ -620,10 +654,14 @@
             function endingblack(){
                 gamestart=false;
                 document.getElementById("turncolor").innerHTML="黑子勝！";
+                document.getElementById("turncolor").classList.remove("tblack");
+                document.getElementById("turncolor").classList.add("winblack");
             }
             function endingwhite(){
                 gamestart=false;
                 document.getElementById("turncolor").innerHTML="白子勝！";
+                document.getElementById("turncolor").classList.remove("twhite");
+                document.getElementById("turncolor").classList.add("winwhite");
             }
             function return0(){
                 location.reload();//重新載入
@@ -638,7 +676,7 @@
             <u><i>點擊「棋盤」遊戲開始</i></u>
             </div>
 
-            <div id="turncolor" class="tblack twhite"></div>
+            <div id="turncolor" class="tblack twhite winblack winwhite"></div>
 
             <button onclick="return0();">重新開始</button>
         </div>
