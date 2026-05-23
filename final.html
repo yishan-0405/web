@@ -11,8 +11,6 @@
                 transition: color 1s;
                 font-family: "Cactus Classical Serif", serif;
                 margin-left: 10px;
-                
-            
             }
 
             #back {
@@ -24,6 +22,9 @@
                 top: 0;
                 left: 0;
                 z-index: -1; /*使其在最下面*/
+            }
+            .backstart{
+                background-color: rgba(255, 255, 255, 0.666);
             }
 
             #board {
@@ -342,7 +343,10 @@
             function black(elm){
 
                 while(x==0){
-                    alert("開始START~~~!");
+                    document.getElementById("back").classList.add("backstart");
+                    setTimeout(function(){
+                        document.getElementById("back").classList.remove("backstart");
+                    },1000);
                     x++;
                     gamestart=true;
                 }
@@ -547,7 +551,7 @@
         </script>
     </head>
     <body>
-        <div id="back"></div> </!-- 放最下面 -->
+        <div id="back" class="backstart"></div> </!-- 放最下面 -->
 
         <div id="title">五子棋</div><hr>
         <b>&emsp;遊戲說明：</b><br>
