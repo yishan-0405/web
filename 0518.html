@@ -22,9 +22,9 @@
             }
         </style>
         <script>
-            var role_dir={"ArrowDown":0,"ArrowUp":0,"ArrowLeft":0,"ArrowRight":0}
             function mykeyup() {
                 var role=document.getElementById("role");
+                role.way[event.key]=false;
                 role.style.animationPlayState="paused" ;
             }
             /*function myinput() {
@@ -34,7 +34,7 @@
                 console.log(event.target.value); /*輸入完後
             } */
            /*console.log("down:"+event.key);*/
-            function kd() {
+            function mykeydown() {
                 event.preventDefault();
                 var role=document.getElementById("role");
                 if(event.key=="ArrowDown") { /*圖片的Y軸可以控制方向*/
@@ -53,11 +53,11 @@
                 var role=document.getElementById("role");
                 if(role.way["ArrowDown"]){
                     role.pos.y++;
-                } else if(role.way["ArrowDown"]){
+                } else if(role.way["ArrowLeft"]){
                     if(role.pos.x > 0) role.pos.x--;
-                } else if(role.way["ArrowDown"]){
+                } else if(role.way["ArrowRight"]){
                     role.pos.x++;
-                } else if(role.way["ArrowDown"]){
+                } else if(role.way["ArrowUp"]){
                     if(role.pos.y > 0) role.pos.y--;
                 }
 
@@ -68,9 +68,10 @@
             function init() {
                 var role=document.getElementById("role");
                 role.pos={x:0,y:0};
-                role_d={"ArrowDown":0,"ArrowUp":0,"ArrowLeft":0,"ArrowRight":0};
+                role.way={"ArrowDown":0,"ArrowUp":0,"ArrowLeft":0,"ArrowRight":0};
                 role.style.top=role.pos.y+"px";
                 role.style.left=role.pos.x+"px";
+                setInterval(role_moving,50);
             }
             /*function ku() {
                 console.log("up:"+event.key);
@@ -82,7 +83,7 @@
 
         </script>
     </head>
-    <body onkeydown="kd();" onkeyup="mykeyup();" onload="init();"> 
+    <body onkeydown="mykeydown();" onkeyup="mykeyup();" onload="init();"> 
         <!-- div不適用鍵盤事件 適用滑鼠事件
         <input type="text"> -->
         <!-- <input type="text" oninput="myinput();" onchange="mychange();"> -->
